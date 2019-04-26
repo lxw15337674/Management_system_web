@@ -11,36 +11,50 @@ export default {
     name: '',
     components: {},
     data() {
-        var validatePass = (rule, value, callback) => {
-            if (value === '') {
-                callback(new Error('请输入密码'));
-            } else {
-                if (this.ruleForm.checkPass !== '') {
-                    this.$refs.ruleForm.validateField('checkPass');
-                }
-                callback();
-            }
-        };
         return {
-            ruleForm: {
-                username: '',
-                password:'',
+            loginForm: {
+                userName: '',
+                password: '',
             },
             rules: {
-                username: [
-                    { required: true, message: '请输入账号', trigger: 'blur' },
+                userName: [
+                    {required: true, message: '请输入账号', trigger: 'blur'},
                 ],
                 password: [
-                    { required: true, message: '请输入密码', trigger: 'blur' },
+                    {required: true, message: '请输入密码', trigger: 'blur'},
                 ],
             }
         };
     },
     methods: {
-        submitForm(formName) {
-            this.$refs[formName].validate((valid) => {
+        login() {
+            this.$refs['loginForm'].validate((valid) => {
                 if (valid) {
-                    alert('submit!');
+                    this.$http({
+                        method: 'post',
+                        url: '/index/login',
+                        data:this.loginForm
+                    }).then((res) => {
+                        let data = res.data;
+                        if(data.result) {
+                            this.$message({
+                                message: data.description,
+                                type: 'success'
+                            });
+                            this.$store.commit('handleUserName', formName.userName)
+                        }else{
+                            this.$message({
+                                message: '登陆成功',
+                                type: 'success'
+                            });
+                        }
+                    }).catch((res) => {
+                        debugger
+                    });
+                    this.$message({
+                        message: '登陆成功',
+                        type: 'success'
+                    });
                 } else {
                     console.log('error submit!!');
                     return false;

@@ -1,23 +1,19 @@
-const notFound = () => import("@/views/404.vue");
-const login = () => import ("@/views/login/index.vue");
-const home = () => import ("@/views/home/index.vue");
-
-
-const routes =  [
-        {
-            path: "/",
-            component: home,
-            name:'home',
-        },
-        {
-            path: "/login",
-            component: login,
-            name:'login',
-        },
-        {
-            path: '*',
-            component: notFound
-        }
-]
+const routes = [
+    {
+        path: "/",
+        // redirect:'/login',
+        component: () => import ("@/views/home/index.vue"),
+        name: 'home',
+    },
+    {
+        path: "/login",
+        component: () => import ("@/views/login/index.vue"),
+        name: 'login',
+    },
+    {
+        path: '*',
+        component: () => import("@/views/404.vue"),
+    }
+];
 
 export default routes;

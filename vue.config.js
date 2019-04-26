@@ -12,18 +12,16 @@ module.exports = {
             .set("image", resolve("src/assets/image"))
 
     },
-    devServer:{
-        open:true,
-        port:8088,
+    devServer: {
+        // historyApiFallback: true,
         // proxy: {
         //     '/api': {
-        //         target: '<url>',
-        //         ws: true,
-        //         changeOrigin: true
+        //         target: 'http://www.baidu.com/',
+        //         pathRewrite: {'^/api' : ''},
+        //         changeOrigin: true,     // target是域名的话，需要这个参数，
+        //         secure: false,          // 设置支持https协议的代理
         //     },
-        //     '/foo': {
-        //         target: '<other_url>'
-        //     }
         // },
+        // noInfo: true
     }
 };
