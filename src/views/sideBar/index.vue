@@ -16,38 +16,29 @@
                  background-color="rgb(48, 65, 86)"
                  text-color="#fff"
                  active-text-color="#1890ff">
-            <el-menu-item index="1">
-                首页
-            </el-menu-item>
-            <el-menu-item index="2">
-                入库
-            </el-menu-item>
-            <el-menu-item index="3">
-                出库
-            </el-menu-item>
-            <el-menu-item index="4">
-                库存管理
-            </el-menu-item>
-            <el-menu-item index="5">
-                退换货处理
-            </el-menu-item>
-            <el-submenu index="6">
-                <template slot="title">报表统计</template>
-                <el-menu-item index="6-1">售出商品</el-menu-item>
-                <el-menu-item index="6-2">入库商品</el-menu-item>
-                <el-menu-item index="6-3">员工入库商品统计</el-menu-item>
-                <el-menu-item index="6-4">员工出库订单统计
-                </el-menu-item>
-                <el-menu-item index="6-5">利润报表
-                </el-menu-item>
-                <el-menu-item index="6-6">订单报表
-                </el-menu-item>
-            </el-submenu>
-            <el-submenu index="7">
-                <template slot="title">系统管理</template>
-                <el-menu-item index="7-1">用户管理</el-menu-item>
-                <el-menu-item index="7-2">权限分配</el-menu-item>
-            </el-submenu>
+            <template v-for="menu in menuList">
+                <template v-if="!menu.children">
+                    <el-menu-item :index="menu.name"
+                                  v-if="itemValue(menu,['meta','showInSideBar'],false)"
+                                  :key="menu.name"
+                                  @click="$router.push({name:menu.name})">
+                        {{itemValue(menu,['meta','title'])}}
+                    </el-menu-item>
+                </template>
+                <template v-else>
+                    <el-submenu :index="menu.name" :key="menu.name">
+                        <template slot="title">{{itemValue(menu,['meta','title'])}}</template>
+                        <template v-for="childMenu in menu.children">
+                            <el-menu-item :index="childMenu.name"
+                                          v-if="itemValue(childMenu,['meta','showInSideBar'],false)"
+                                          :key="childMenu.name"
+                                          @click="$router.push({name:menu.name})">
+                                {{itemValue(childMenu,['meta','title'])}}
+                            </el-menu-item>
+                        </template>
+                    </el-submenu>
+                </template>
+            </template>
         </el-menu>
     </div>
 </template>

@@ -5,16 +5,31 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        userName: '' || localStorage.getItem('user_name')
+        user: {
+            username: '',
+            user_type: '',
+            last_login_time:'',
+            create_time:'',
+        }
     },
     mutations: {
-        handleUserName: (state, userName) => {
-            state.userName = userName
-            localStorage.setItem('userName', userName)
+        login: (state, data) => {
+            state.user=data
+            localStorage.setItem('user', JSON.stringify(state.user));
+        },
+        logout: (state) => {
+            state.user = {
+                username: '',
+                user_type: ''
+            };
+            localStorage.clear();
         }
     },
     getters: {
-        userName: (state) => state.user_name
+        username: (state) => {
+            return state.user.username
+        },
+        user_type: (state) => state.user.user_type,
     },
     actions: {}
 });

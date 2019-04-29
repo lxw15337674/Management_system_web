@@ -13,7 +13,15 @@
     <div class="header">
 
         <div class="f18 dib">仓库管理系统</div>
-        <div style="float: right;" @click="login">未登录</div>
+        <div style="float: right;     cursor: pointer">
+            <template v-if="$store.getters.username">
+                <div class="dib mr20">{{$store.getters.username}}</div>
+                <el-button type="text" @click="logout">登出</el-button>
+            </template>
+            <template v-else>
+                <el-button type="text" @click="login">未登录</el-button>
+            </template>
+        </div>
     </div>
 </template>
 
@@ -27,7 +35,15 @@
         },
         methods: {
             login() {
-                console.log('login')
+                this.$router.push({name: 'login'})
+            },
+            logout() {
+                this.$store.commit('logout');
+                this.$message({
+                    message: '登出成功',
+                    type: 'success'
+                });
+                this.$router.push({name: 'login'})
             }
         },
         computed: {},

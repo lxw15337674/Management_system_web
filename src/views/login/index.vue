@@ -13,8 +13,8 @@
     <div class="login">
         <div class="f20 mg20" style="text-align: center;">仓库管理系统</div>
         <el-form :model="loginForm" status-icon :rules="rules" ref="loginForm" class="demo-ruleForm">
-            <el-form-item  prop="userName">
-                <el-input  v-model="loginForm.userName" autocomplete="off" placeholder="账号"></el-input>
+            <el-form-item  prop="username">
+                <el-input  v-model="loginForm.username" autocomplete="off" placeholder="账号"></el-input>
             </el-form-item>
             <el-form-item  prop="password">
                 <el-input  type="password" v-model="loginForm.password" autocomplete="off" placeholder="密码"></el-input>
@@ -34,4 +34,5 @@
     }
 </script>
 
-<style lang="stylus" src="./index.styl"></style>
+<style lang="stylus" src="./index.styl">
+</style>
