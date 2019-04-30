@@ -36,8 +36,8 @@
             </el-col>
             <el-col :span="16" class="content">
                 <div style="margin-bottom:10px">
-                <div class="title dib" style="padding:10px">商品选择</div>
-                <el-button style="float: right" size="small" type="success">新建商品</el-button>
+                    <div class="title dib" style="padding:10px">商品选择</div>
+                    <el-button style="float: right" size="small" type="success" @click="addCommodity()">新建商品</el-button>
                 </div>
                 <div>
                     <el-row>
@@ -52,7 +52,8 @@
                                         <div class="title">卤肉饭</div>
                                         <div>库存：3</div>
                                         <div class="price">单价：4</div>
-                                        <el-button style="float:right" size="small" type="primary" round>加入订单</el-button>
+                                        <el-button style="float:right" size="small" type="primary" round @click="pushCommodity()">加入订单
+                                        </el-button>
                                     </el-col>
                                 </el-row>
                             </el-card>
@@ -61,7 +62,32 @@
                 </div>
             </el-col>
         </el-row>
+        <el-dialog
+                title="提示"
+                :visible.sync="dialogVisible"
+                width="30%">
+            <span>新建商品</span>
+            <el-form :model="formData"
+                     ref="formData"
+                     label-width="80px"
+                     :rules="rules">
+                <el-form-item   label="商品名" prop="username">
+                    <el-input clearable v-model="formData.username" placeholder="请选择用户名"  ></el-input>
+                </el-form-item>
+                <el-form-item   label="商品图片" prop="username">
+                    <el-input clearable v-model="formData.username" placeholder="请选择用户名"  ></el-input>
+                </el-form-item>
+                <el-form-item label="单价" prop="nickname">
+                    <el-input clearable v-model="formData.nickname" placeholder="请选择昵称"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+  </span>
+        </el-dialog>
     </div>
+
 </template>
 
 <script>
@@ -80,6 +106,7 @@
             /*background white;*/
             min-height: 700px;
         }
+
         .content {
             background: white;
             margin-left: 20px
@@ -102,7 +129,7 @@
 
             .commodity-img {
                 height: 120px
-                width:100%
+                width: 100%
 
             }
         }
@@ -116,7 +143,7 @@
             /*height 100%*/
             font-size: 16px;
             line-height 25px
-            padding:5px 0 5px 10px
+            padding: 5px 0 5px 10px
         }
 
     }

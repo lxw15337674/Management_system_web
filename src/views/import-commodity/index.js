@@ -12,10 +12,17 @@ export default {
     components: {},
     data() {
         return {
-
+            dialogVisible: false
         };
     },
-    methods: {},
+    methods: {
+        addCommodity() {
+            this.dialogVisible = true
+        },
+        pushCommodity(){
+
+        }
+    },
     computed: {},
     mounted() {
 
