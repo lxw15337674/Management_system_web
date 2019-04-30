@@ -21,8 +21,11 @@
                  ref="formData"
                  label-width="80px"
                  :rules="rules">
-            <el-form-item label="用户名" prop="username">
-                <el-input clearable v-model="formData.username" placeholder="请选择用户名"></el-input>
+            <el-form-item v-if="title==='新增'" label="用户名" prop="username">
+                <el-input clearable v-model="formData.username" placeholder="请选择用户名"  ></el-input>
+            </el-form-item>
+            <el-form-item label="昵称" prop="nickname">
+                <el-input clearable v-model="formData.nickname" placeholder="请选择昵称"></el-input>
             </el-form-item>
             <el-form-item label="用户类型" prop="user_type">
                 <el-select v-model="formData.user_type" placeholder="请选择用户类型">
@@ -56,8 +59,7 @@
                 this.$http.post('/index/checkname', JSON.stringify({
                     username: value
                 })).then(res => {
-                    debugger
-                    if (res.data.data) {
+                    if (res.data.result) {
                         callback(new Error('用户名已被使用'));
                     } else {
                         callback();
@@ -73,7 +75,7 @@
                 rules: {
                     username: [{required: true, message: '账号不能为空', trigger: 'blur'},
                         {validator: checkname, trigger: 'blur'}],
-                    name: [{validator: checkname, trigger: 'blur'}],
+                    nickname: [{required: true, message: '昵称不能为空', trigger: 'blur'}],
                     user_type: [{required: true, message: '用户类型不能为空', trigger: 'blur'}]
                 },
             };
@@ -85,7 +87,7 @@
                     if (valid) {
                         let param = {
                             id: that.formData.id,
-                            username: that.formData.username,
+                            nickname: that.formData.nickname,
                             user_type: that.formData.user_type,
                         };
                         this.$http({

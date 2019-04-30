@@ -11,12 +11,13 @@ export default {
     mixins: [util],
     data() {
         return {
-            activeIndex: '1',
+            activeIndex: ''
         }
     },
     methods: {
         handleSelect() {
         },
+
     },
     computed: {
         menuList() {
@@ -24,8 +25,4 @@ export default {
         },
 
     },
-    mounted() {
-
-    }
-
 };

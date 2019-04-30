@@ -18,7 +18,7 @@ const routes = [
     },
     {
         path: "/import",
-        component: () => import ("@/views/login/index.vue"),
+        component: () => import ("@/views/import-commodity/index.vue"),
         name: 'import',
         meta: {
             showInSideBar: true,
@@ -28,7 +28,7 @@ const routes = [
     {
         path: "/export",
         component: () => import ("@/views/login/index.vue"),
-        name: '/export',
+        name: 'export',
         meta: {
             showInSideBar: true,
             title: '出库',
@@ -63,7 +63,7 @@ const routes = [
         children: [
             {
                 path: "/importCount",
-                component: () => import ("@/views/login/index.vue"),
+                component: () => import ("@/views/import-commodity/index.vue"),
                 name: 'importCount',
                 meta: {
                     showInSideBar: true,

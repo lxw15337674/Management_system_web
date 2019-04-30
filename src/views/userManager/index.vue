@@ -22,9 +22,19 @@
                     label="用户名">
             </el-table-column>
             <el-table-column
+                    prop="nickname"
+                    label="昵称">
+
+            </el-table-column>
+            <el-table-column
                     prop="user_type"
-                    label="用户类型"
-            ></el-table-column>
+                    label="用户类型">
+                <template slot-scope="scope">
+                    <template v-for="item in userType">
+                        <div v-if="item.value===scope.row.user_type">{{item.label}}</div>
+                    </template>
+                </template>
+            </el-table-column>
             <el-table-column
                     prop="create_time"
                     label="创建时间">

@@ -5,9 +5,12 @@
  */
 
 import editDialog from "./edit-dialog.vue";
+import userType from '@/mixins/userType'
+
 export default {
     name: 'userManager',
     components: {editDialog},
+    mixins:[userType],
     data() {
         return {
             userList: [],
@@ -31,13 +34,13 @@ export default {
         },
         editRow(row){
             this.selData=row;
-            this.$refs.dialog.dialogVisible=true
-            this.$refs.dialog.title='编辑'
+            this.$refs.dialog.dialogVisible=true;
+            this.$refs.dialog.title='编辑';
         },
         add(){
             this.selData={};
-            this.$refs.dialog.dialogVisible=true
-            this.$refs.dialog.title='新增'
+            this.$refs.dialog.dialogVisible=true;
+            this.$refs.dialog.title='新增';
 
         },
         deleteRow(row){

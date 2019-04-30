@@ -18,6 +18,10 @@
         components: {
             sideBar,
             sHeader
+        },
+        mounted() {
+            window.vue = this;
+
         }
     };
 </script>
@@ -26,11 +30,13 @@
     .app {
         height 100%
     }
+
     .container {
         min-height: 100vh;
         display: flex;
         flex-direction: column;
     }
+
     .content {
         padding: 32px;
         background-color: #f0f2f5;
