@@ -27,7 +27,7 @@ const routes = [
     },
     {
         path: "/export",
-        component: () => import ("@/views/login/index.vue"),
+        component: () => import ("@/views/export-commodity/index.vue"),
         name: 'export',
         meta: {
             showInSideBar: true,
@@ -36,7 +36,7 @@ const routes = [
     },
     {
         path: "/inventoryManagement",
-        component: () => import ("@/views/login/index.vue"),
+        component: () => import ("@/views/inventoryManagement/index.vue"),
         name: 'inventoryManagement',
         meta: {
             showInSideBar: true,
@@ -45,82 +45,83 @@ const routes = [
     },
     {
         path: "/return",
-        component: () => import ("@/views/login/index.vue"),
+        component: () => import ("@/views/return/index.vue"),
         name: 'return',
         meta: {
             showInSideBar: true,
             title: '退换货处理',
         },
     },
+
     {
-        path: "/report",
-        component: () => import ("@/views/login/index.vue"),
-        name: 'report',
+        path: "/reportCount",
+        name: 'reportCount',
+        component: () => import ("@/views/report/reportCount/index.vue"),
         meta: {
             showInSideBar: true,
             title: '报表统计',
         },
-        children: [
-            {
-                path: "/importCount",
-                component: () => import ("@/views/import-commodity/index.vue"),
-                name: 'importCount',
-                meta: {
-                    showInSideBar: true,
-                    title: '入库',
-                },
-            },
-            {
-                path: "/exportCount",
-                component: () => import ("@/views/login/index.vue"),
-                name: 'exportCount',
-                meta: {
-                    showInSideBar: true,
-                    title: '出库',
-                },
-            },
-            {
-                path: "/staffImport",
-                component: () => import ("@/views/login/index.vue"),
-                name: 'staffImport',
-                meta: {
-                    showInSideBar: true,
-                    title: '员工入库',
-                },
-            },
-            {
-                path: "/staffExport",
-                component: () => import ("@/views/login/index.vue"),
-                name: 'staffExport',
-                meta: {
-                    showInSideBar: true,
-                    title: '员工出库',
-                },
-            },
-            {
-                path: "/profit",
-                component: () => import ("@/views/login/index.vue"),
-                name: 'profit',
-                meta: {
-                    showInSideBar: true,
-                    title: '利润',
-                },
-            },
-            {
-                path: "/order",
-                component: () => import ("@/views/login/index.vue"),
-                name: 'order',
-                meta: {
-                    showInSideBar: true,
-                    title: '订单',
-                },
-            },
-        ]
     },
+    {
+        path: "/importCount",
+        component: () => import ("@/views/report/importCount/index.vue"),
+        name: 'importCount',
+        meta: {
+            showInSideBar: true,
+            title: '商品入库统计',
+        },
+    },
+    {
+        path: "/exportCount",
+        component: () => import ("@/views/report/exportConut/index.vue"),
+        name: 'exportCount',
+        meta: {
+            showInSideBar: true,
+            title: '商品出库统计',
+        },
+    },
+    // {
+    //     path: "/staffExport",
+    //     component: () => import ("@/views/report/staffExport/index.vue"),
+    //     name: 'staffExport',
+    //     meta: {
+    //         showInSideBar: true,
+    //         title: '员工出库统计',
+    //     },
+    // },
+    // {
+    //     path: "/staffImport",
+    //     component: () => import ("@/views/report/staffImport/index.vue"),
+    //     name: 'staffImport',
+    //     meta: {
+    //         showInSideBar: true,
+    //         title: '员工入库统计',
+    //     },
+    // },
+    // {
+    //     path: "/profit",
+    //     component: () => import ("@/views/report/profit/index.vue"),
+    //     name: 'profit',
+    //     meta: {
+    //         showInSideBar: true,
+    //         title: '利润统计',
+    //     },
+    // },
+    // {
+    //     path: "/order",
+    //     component: () => import ("@/views/report/order/index.vue"),
+    //     name: 'order',
+    //     meta: {
+    //         showInSideBar: true,
+    //         title: '订单统计',
+    //     },
+    // },
+
+
     {
         path: "/userManager",
         component: () => import ("@/views/userManager/index.vue"),
-        name:'userManager',
+        name: 'userManager',
         meta: {
             showInSideBar: true,
             title: '系统管理',

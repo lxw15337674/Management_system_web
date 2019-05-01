@@ -8,7 +8,7 @@
 
 export default {
 
-    name: 'importCommodity',
+    name: 'return',
     components: {},
     data() {
         return {
@@ -19,18 +19,25 @@ export default {
                 classification: [{required: true, message: '分类不能为空', trigger: 'blur'},],
                 supplier: [{required: true, message: '供货商不能为空', trigger: 'blur'},],
                 wholesalePrice: [{required: true, message: '批发价格不能为空', trigger: 'blur'},],
-                sellPrice: [{required: true, message: '零售价格不能为空', trigger: 'blur'},],
                 imgUrl: [{required: true, message: '商品图片不能为空', trigger: 'blur'}],
             },
+            tableData: [{
+                id: '123',
+                name: '123',
+                address: '123',
+                phone: '123',
+                expressNUmber: '123'
+            }]
         };
     },
     methods: {
-        addCommodity() {
-            this.dialogVisible = true
+        editItem() {
+
         },
-        pushCommodity() {
+        deleteItem() {
 
         }
+
     },
     computed: {},
     mounted() {

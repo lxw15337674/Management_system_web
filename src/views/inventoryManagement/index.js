@@ -8,33 +8,45 @@
 
 export default {
 
-    name: 'importCommodity',
+    name: 'inventoryManagement',
     components: {},
     data() {
         return {
+            selIndex: '',
             dialogVisible: false,
-            formData: {},
+            formData: {
+                number:0,
+            },
             rules: {
                 name: [{required: true, message: '商品名不能为空', trigger: 'blur'},],
                 classification: [{required: true, message: '分类不能为空', trigger: 'blur'},],
                 supplier: [{required: true, message: '供货商不能为空', trigger: 'blur'},],
                 wholesalePrice: [{required: true, message: '批发价格不能为空', trigger: 'blur'},],
-                sellPrice: [{required: true, message: '零售价格不能为空', trigger: 'blur'},],
                 imgUrl: [{required: true, message: '商品图片不能为空', trigger: 'blur'}],
+                sellPrice: [{required: true, message: '零售价格不能为空', trigger: 'blur'},],
+
             },
         };
     },
     methods: {
-        addCommodity() {
-            this.dialogVisible = true
+        edit(index) {
+            this.selIndex = index
+        },
+        submit() {
+            this.selIndex = ''
+        },
+        deleteItem() {
+
         },
         pushCommodity() {
 
         }
     },
-    computed: {},
+    computed: {}
+    ,
     mounted() {
 
     }
 
-};
+}
+;

@@ -10,13 +10,13 @@
       */
     -->
 <template>
-    <div class="import-commodity">
+    <div class="export-commodity">
         <!--            <div>入库</div>-->
         <el-row>
             <el-col :span="7" class="order-detail">
                 <el-card>
                     <div slot="header">
-                        <span class="title">入库单详情</span>
+                        <span class="title">出库订单详情</span>
                     </div>
                     <el-table>
                         <el-table-column
@@ -27,10 +27,38 @@
                                 prop=""
                                 label="数量">
                         </el-table-column>
+                        <el-table-column
+                                prop=""
+                                label="小计（元）">
+                        </el-table-column>
                     </el-table>
-                    <div style="float:right; padding: 20px" >
+                    <div style="text-align:right; padding:10px 20px" >
+                        <span style="font-size:46px ;color:red"><span style="font-size: 20px">¥</span>100</span>
+                    </div>
+                    <div class="pd20">
+                        <el-form :model="formData"
+                                 ref="formData"
+                                 label-width="100px"
+                                 :rules="rules">
+                            <el-form-item label="客户姓名" prop="name">
+                                <el-input clearable v-model="formData.name" placeholder="请输入客户姓名"></el-input>
+                            </el-form-item>
+                            <el-form-item label="客户地址" prop="address">
+                                <el-input clearable v-model="formData.address" placeholder="请输入客户地址"></el-input>
+                            </el-form-item>
+                            <el-form-item label="客户手机号" prop="phone" >
+                                <el-input clearable v-model="formData.phone" placeholder="请输入客户手机号"></el-input>
+                            </el-form-item>
+                            <el-form-item label="快递单号" prop="expressNumber">
+                                <el-input clearable v-model="formData.expressNumber" placeholder="请输入快递单号"></el-input>
+                            </el-form-item>
+                        </el-form>
+                    </div>
+
+                    <div style="float:right; padding:0 10px 20px" >
                         <el-button type="danger" @click="submit" style="width:110px; font-size:18px">确定</el-button>
                     </div>
+
                 </el-card>
             </el-col>
             <el-col :span="16">
@@ -38,7 +66,9 @@
                     <el-row>
                         <el-col :span="2" style="color: #999;    padding: 12px;">商品分类：</el-col>
                         <el-col :span="22">
-                            <el-button type="text" style="padding: 10px 20px;font-size:16px; margin:0" v-for="item in 16">分类{{item}}</el-button>
+                            <el-button type="text" style="padding: 10px 20px;font-size:16px; margin:0"
+                                       v-for="item in 16">分类{{item}}
+                            </el-button>
 
                         </el-col>
                     </el-row>
@@ -46,8 +76,6 @@
                 <div class="content" style="min-height: 700px;">
                     <div style="margin-bottom:10px">
                         <div class="title dib" style="padding:10px">商品选择</div>
-                        <el-button style="float: right" size="small" type="success" @click="addCommodity()">新建商品
-                        </el-button>
                     </div>
                     <div>
                         <el-row>
@@ -92,42 +120,6 @@
                 </div>
             </el-col>
         </el-row>
-        <el-dialog
-                title="新建商品"
-                :visible.sync="dialogVisible"
-                width="30%">
-            <el-form :model="formData"
-                     ref="formData"
-                     label-width="80px"
-                     :rules="rules">
-                <el-form-item label="商品名" prop="name">
-                    <el-input clearable v-model="formData.name" placeholder="请输入商品名"></el-input>
-                </el-form-item>
-                <el-form-item label="分类" prop="classification">
-                    <el-input clearable v-model="formData.classification" placeholder="请输入分类"></el-input>
-                </el-form-item>
-                <el-form-item label="供货商" prop="supplier">
-                    <el-input clearable v-model="formData.supplier" placeholder="请输入供货商"></el-input>
-                </el-form-item>
-                <el-form-item label="批发价格" prop="wholesalePrice">
-                    <el-input clearable v-model="formData.wholesalePrice" placeholder="请输入批发价格"></el-input>
-                </el-form-item>
-                <el-form-item label="零售价格" prop="sellPrice">
-                    <el-input clearable v-model="formData.sellPrice" placeholder="请输入零售价格"></el-input>
-                </el-form-item>
-                <el-form-item label="商品图片" prop="imgUrl">
-                    <el-input clearable v-model="formData.imgUrl" placeholder="请输入商品图片"></el-input>
-                </el-form-item>
-                <el-form-item label="图片浏览">
-                    <img :src="formData.imgUrl"
-                         class="commodity-img" alt="">
-                </el-form-item>
-            </el-form>
-            <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-  </span>
-        </el-dialog>
     </div>
 
 </template>
@@ -141,7 +133,7 @@
 </script>
 
 <style lang="stylus">
-    .import-commodity {
+    .export-commodity {
         padding: 1% 5%
 
         .order-detail {
@@ -172,21 +164,21 @@
         }
 
         .commodity-img {
-            height: 100%
+            height: 120px
             width: 120px
 
         }
+
 
         .el-card:hover {
             background #f0f2f5 !important
         }
 
-
         .detail {
             /*height 100%*/
             font-size: 15px;
             line-height: 20px;
-            padding: 10px 0 ;
+            padding: 10px 0 0 0;
         }
 
     }

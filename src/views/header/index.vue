@@ -12,7 +12,10 @@
 <template>
     <div class="header">
 
-        <div class="f18 dib">仓库管理系统</div>
+        <div class="f18 dib">
+            <span style="font-size: 23px;font-weight: 900;">
+                仓库管理系统</span>
+        </div>
         <div style="float: right;     cursor: pointer">
             <template v-if="$store.getters.username">
                 <div class="dib mr20">{{$store.getters.username}}</div>

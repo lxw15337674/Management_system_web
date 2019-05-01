@@ -32,7 +32,7 @@
                             <el-menu-item :index="childMenu.name"
                                           v-if="itemValue(childMenu,['meta','showInSideBar'],false)"
                                           :key="childMenu.name"
-                                          @click="$router.push({name:menu.name})">
+                                          @click="$router.push({name:childMenu.name})">
                                 {{itemValue(childMenu,['meta','title'])}}
                             </el-menu-item>
                         </template>
