@@ -81,8 +81,9 @@
                     <el-row>
                         <el-col :span="2" style="color: #999;    padding: 12px;">商品分类：</el-col>
                         <el-col :span="22">
-                            <el-button type="text" style="padding: 10px 20px;font-size:16px; margin:0"
-                                       v-for="item in 16">分类{{item}}
+                            <el-button type="text" style="padding: 10px 20px;font-size:18px; margin:0" v-for="item in typeList"
+                                       @click="getCommodity(item.p_type)">
+                                {{item.p_type}}
                             </el-button>
 
                         </el-col>

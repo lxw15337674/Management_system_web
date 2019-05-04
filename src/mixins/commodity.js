@@ -32,12 +32,12 @@ export default {
         },
         //获取商品表
         getCommodity(type) {
-
             this.$http({
                 method: 'post',
-                url: '/view/prolistview',
+                url: '/proinfo/getlist',
                 data: type ? {type: type} : null
             }).then((res) => {
+                debugger
                 this.commodityList = JSON.parse(res.data.result);
             }).catch((res) => {
                 this.$notify({

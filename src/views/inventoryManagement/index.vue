@@ -18,8 +18,9 @@
                     商品分类：
                 </el-col>
                 <el-col :span="22">
-                    <el-button type="text" style="padding: 10px 20px;font-size:18px; margin:0" v-for="item in typeList">
-                        {{item}}
+                    <el-button type="text" style="padding: 10px 20px;font-size:18px; margin:0" v-for="item in typeList"
+                               @click="getCommodity(item.p_type)">
+                        {{item.p_type}}
                     </el-button>
 
                 </el-col>
@@ -185,7 +186,7 @@
 
         .commodity {
             min-height: 120px;
-            font-size: 20px;
+            font-size: 18px;
             line-height: 28px;
         }
 
