@@ -60,14 +60,14 @@ export default {
                     return
                 }
             }
-            let obj = Object.assign(item, {user_id: this.$store.state.user.id,num:1});
+            let obj = {p_id: item.p_id, p_name: item.p_name, num: 1};
             this.orderList.push(obj);
         },
         submitOrder() {
             this.$http({
                 method: 'post',
                 url: '/store/input',
-                data: JSON.stringify(this.orderList, {user_id: this.$store.state.user.id})
+                data: {orderList: this.orderList, user_id: this.$store.state.user.id}
             }).then((res) => {
                 this.$notify({
                     title: '提示',

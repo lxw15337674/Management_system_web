@@ -33,7 +33,7 @@ export default {
                     return
                 }
             }
-            let obj = Object.assign(item, {user_id: this.$store.state.user.id,num:1});
+            let obj = Object.assign(item, {num:1});
             this.orderList.push(obj);
 
         },
