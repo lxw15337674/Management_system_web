@@ -27,7 +27,7 @@
                                 prop="num"
                                 label="数量">
                             <template slot-scope="scope">
-                                <el-input-number v-model="scope.row.num"  size="mini"  :min="1"></el-input-number>
+                                <el-input-number v-model="scope.row.num"  size="mini"  :min="1" :max="scope.row.p_num"></el-input-number>
                             </template>
                         </el-table-column>
                         <el-table-column label="操作">
@@ -138,7 +138,7 @@
             </el-form>
             <span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="createCommodity">确 定</el-button>
+    <el-button type="primary" @click="createCommodity(formData)">确 定</el-button>
   </span>
         </el-dialog>
     </div>

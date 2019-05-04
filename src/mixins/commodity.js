@@ -12,6 +12,7 @@ export default {
         return {
             commodityList: [],
             typeList: [],
+            formData:{},
         };
     },
     methods: {
@@ -31,11 +32,11 @@ export default {
             })
         },
         //获取商品表
-        getCommodity(type) {
+        getCommodity(type='') {
             this.$http({
                 method: 'post',
                 url: '/proinfo/getlist',
-                data: type ? {type: type} : null
+                data: {type:type}
             }).then((res) => {
                 this.commodityList = JSON.parse(res.data.result);
             }).catch((res) => {

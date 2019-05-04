@@ -6,7 +6,6 @@
 
 // import  from '';
 import commodity from '@/mixins/commodity'
-
 export default {
     name: 'exportCommodity',
     mixins: [commodity],
@@ -27,15 +26,21 @@ export default {
     },
     methods: {
         pushCommodity(item) {
-            for (let i of this.orderList) {
-                if (item.p_id === i.p_id) {
-                    i.num += 1;
-                    return
+            if (item.p_num === undefined || item.p_num === 0) {
+                this.$notify.error({
+                    title: '错误',
+                    message: '该商品库存为0，不能出库'
+                });
+            } else {
+                for (let i of this.orderList) {
+                    if (item.p_id === i.p_id) {
+                        i.num += 1;
+                        return
+                    }
                 }
+                let obj = {...item, num: 1};
+                this.orderList.push(obj);
             }
-            let obj = Object.assign(item, {num:1});
-            this.orderList.push(obj);
-
         },
         submit() {
 

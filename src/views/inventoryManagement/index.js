@@ -6,53 +6,66 @@
 
 // import  from '';
 import commodity from '@/mixins/commodity'
+import createCommodity from '@/mixins/createCommodity'
 
 export default {
 
     name: 'inventoryManagement',
-    mixins: [commodity],
+    mixins: [commodity, createCommodity],
     components: {},
     data() {
         return {
             selIndex: '',
             dialogVisible: false,
-            formData: {
-                number: 0,
-            },
-            rules: {
-                name: [{required: true, message: '商品名不能为空', trigger: 'blur'},],
-                classification: [{required: true, message: '分类不能为空', trigger: 'blur'},],
-                supplier: [{required: true, message: '供货商不能为空', trigger: 'blur'},],
-                wholesalePrice: [{required: true, message: '批发价格不能为空', trigger: 'blur'},],
-                imgUrl: [{required: true, message: '商品图片不能为空', trigger: 'blur'}],
-                sellPrice: [{required: true, message: '零售价格不能为空', trigger: 'blur'},],
-
-            },
+            editFormData: {},
         };
     },
     methods: {
-        edit(index) {
-            this.selIndex = index
+        edit(index, item) {
+            this.selIndex = index;
+            this.formData = item
         },
-        submit() {
-            this.selIndex = ''
+        editSubmit(editFormData) {
+            debugger
+            this.$refs['editFormData'].validate((valid) => {
+                if (valid) {
+                    this.$http({
+                        method: 'post',
+                        url: '/proinfo/update',
+                        data: editFormData
+                    }).then((res) => {
+                        this.$notify({
+                            title: '提示',
+                            message: '编辑商品成功',
+                            type: 'success',
+                        });
+                        this.selIndex = ''
+                    }).catch((res) => {
+                        this.$notify({
+                            title: '提示',
+                            message: '编辑商品失败',
+                            type: 'error',
+                        });
+                    })
+                }
+            })
         },
         deleteItem(item) {
             this.$http({
                 method: 'post',
                 url: '/prolist/delete',
-                data:{p_id:item.p_id}
+                data: {p_id: item.p_id}
             }).then((res) => {
                 this.commodityList = JSON.parse(res.data.result);
                 this.$notify({
                     title: '提示',
-                    message: '删除商品列表成功',
+                    message: '删除商品成功',
                     type: 'success',
                 });
             }).catch((res) => {
                 this.$notify({
                     title: '提示',
-                    message: '删除商品列表失败',
+                    message: '删除商品失败',
                     type: 'error',
                 });
             })

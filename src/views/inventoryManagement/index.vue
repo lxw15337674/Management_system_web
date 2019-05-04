@@ -29,48 +29,43 @@
         <div class="content" style="min-height: 700px;">
             <div style="margin-bottom:10px">
                 <div class="title dib" style="padding:10px">目前库存</div>
+                <el-button style="float: right" size="small" type="success" @click="dialogVisible = true">新建商品
+                </el-button>
             </div>
             <div>
                 <el-row>
                     <el-col :span="8" v-for="(item,index) in commodityList" :key="index" style="padding:5px">
 
-                        <el-card style="    padding: 20px;" class="commodity">
+                        <el-card style="padding: 20px; " class="commodity">
                             <template v-if="index===selIndex">
-                                <el-form :model="formData"
-                                         ref="formData"
+                                <el-form :model="editFormData"
+                                         ref="editFormData"
                                          label-width="80px"
                                          :rules="rules">
-                                    <el-form-item label="商品名" prop="name">
-                                        <el-input clearable v-model="formData.name" placeholder="请输入商品名"></el-input>
+                                    <el-form-item label="商品名" prop="p_name">
+                                        <el-input clearable v-model="editFormData.p_name" placeholder="请输入商品名"></el-input>
                                     </el-form-item>
-                                    <el-form-item label="分类" prop="classification">
-                                        <el-input clearable v-model="formData.classification"
-                                                  placeholder="请输入分类"></el-input>
+                                    <el-form-item label="分类" prop="p_type">
+                                        <el-input clearable v-model="editFormData.p_type" placeholder="请输入分类"></el-input>
                                     </el-form-item>
-                                    <el-form-item label="供货商" prop="supplier">
-                                        <el-input clearable v-model="formData.supplier" placeholder="请输入供货商"></el-input>
+                                    <el-form-item label="供货商" prop="p_supplier">
+                                        <el-input clearable v-model="editFormData.p_supplier" placeholder="请输入供货商"></el-input>
                                     </el-form-item>
-                                    <el-form-item label="批发价格" prop="wholesalePrice">
-                                        <el-input clearable v-model="formData.wholesalePrice"
-                                                  placeholder="请输入批发价格"></el-input>
+                                    <el-form-item label="批发价格" prop="pf_price">
+                                        <el-input clearable v-model="editFormData.pf_price" placeholder="请输入批发价格"></el-input>
                                     </el-form-item>
-                                    <el-form-item label="库存数量" prop="number">
-                                        <el-input-number v-model="formData.number" :min="0"
-                                                         label="描述文字"></el-input-number>
-                                    </el-form-item>
-                                    <el-form-item label="零售价格" prop="sellPrice">
-                                        <el-input clearable v-model="formData.sellPrice"
-                                                  placeholder="请输入零售价格"></el-input>
+                                    <el-form-item label="零售价格" prop="ls_price">
+                                        <el-input clearable v-model="editFormData.ls_price" placeholder="请输入零售价格"></el-input>
                                     </el-form-item>
                                     <el-form-item label="商品图片" prop="imgUrl">
-                                        <el-input clearable v-model="formData.imgUrl" placeholder="请输入商品图片"></el-input>
+                                        <el-input clearable v-model="editFormData.imgUrl" placeholder="请输入商品图片"></el-input>
                                     </el-form-item>
                                     <el-form-item label="图片浏览">
-                                        <img :src="formData.imgUrl"
+                                        <img :src="editFormData.imgUrl"
                                              class="commodity-img" alt="">
                                     </el-form-item>
                                     <el-button class="handle-button" size="medium" type="primary"
-                                               @click="submit()">确定
+                                               @click="editSubmit(editFormData)">确定
                                     </el-button>
                                 </el-form>
                             </template>
@@ -105,7 +100,7 @@
                                     </el-col>
                                 </el-row>
                                 <el-button class="handle-button" size="medium" type="primary"
-                                           @click="edit(index)">编辑
+                                           @click="edit(index,item)">编辑
                                 </el-button>
                                 <el-button class="handle-button" size="medium" type="danger"
                                            @click="deleteItem(item)">删除
@@ -124,20 +119,20 @@
                      ref="formData"
                      label-width="80px"
                      :rules="rules">
-                <el-form-item label="商品名" prop="name">
-                    <el-input clearable v-model="formData.name" placeholder="请输入商品名"></el-input>
+                <el-form-item label="商品名" prop="p_name">
+                    <el-input clearable v-model="formData.p_name" placeholder="请输入商品名"></el-input>
                 </el-form-item>
-                <el-form-item label="分类" prop="classification">
-                    <el-input clearable v-model="formData.classification" placeholder="请输入分类"></el-input>
+                <el-form-item label="分类" prop="p_type">
+                    <el-input clearable v-model="formData.p_type" placeholder="请输入分类"></el-input>
                 </el-form-item>
-                <el-form-item label="供货商" prop="supplier">
-                    <el-input clearable v-model="formData.supplier" placeholder="请输入供货商"></el-input>
+                <el-form-item label="供货商" prop="p_supplier">
+                    <el-input clearable v-model="formData.p_supplier" placeholder="请输入供货商"></el-input>
                 </el-form-item>
-                <el-form-item label="批发价格" prop="wholesalePrice">
-                    <el-input clearable v-model="formData.wholesalePrice" placeholder="请输入批发价格"></el-input>
+                <el-form-item label="批发价格" prop="pf_price">
+                    <el-input clearable v-model="formData.pf_price" placeholder="请输入批发价格"></el-input>
                 </el-form-item>
-                <el-form-item label="零售价格" prop="sellPrice">
-                    <el-input clearable v-model="formData.sellPrice" placeholder="请输入零售价格"></el-input>
+                <el-form-item label="零售价格" prop="ls_price">
+                    <el-input clearable v-model="formData.ls_price" placeholder="请输入零售价格"></el-input>
                 </el-form-item>
                 <el-form-item label="商品图片" prop="imgUrl">
                     <el-input clearable v-model="formData.imgUrl" placeholder="请输入商品图片"></el-input>
@@ -149,7 +144,7 @@
             </el-form>
             <span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+    <el-button type="primary" @click="createCommodity(formData)">确 定</el-button>
   </span>
         </el-dialog>
     </div>
@@ -185,7 +180,7 @@
 
 
         .commodity {
-            min-height: 120px;
+            min-height: 180px;
             font-size: 18px;
             line-height: 28px;
         }
