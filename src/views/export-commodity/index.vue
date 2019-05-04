@@ -18,18 +18,33 @@
                     <div slot="header">
                         <span class="title">出库订单详情</span>
                     </div>
-                    <el-table>
+                    <el-table :data="orderList">
                         <el-table-column
-                                prop=""
+                                prop="p_name"
                                 label="商品">
                         </el-table-column>
                         <el-table-column
-                                prop=""
+                                prop="p_num"
                                 label="数量">
+                            <template slot-scope="scope">
+                                <el-input-number v-model="scope.row.p_num"  size="mini"  :min="1"></el-input-number>
+                            </template>
                         </el-table-column>
                         <el-table-column
-                                prop=""
-                                label="小计（元）">
+                                prop="p_num"
+                                label="批发金额">
+                        </el-table-column>
+                        <el-table-column
+                                prop="p_num"
+                                label="零售金额">
+                        </el-table-column>
+                        <el-table-column label="操作">
+                            <template slot-scope="scope">
+                                <el-button
+                                        size="mini"
+                                        type="danger"
+                                        @click="orderList.splice(scope.$index,1)">删除</el-button>
+                            </template>
                         </el-table-column>
                     </el-table>
                     <div style="text-align:right; padding:10px 20px" >
@@ -55,8 +70,8 @@
                         </el-form>
                     </div>
 
-                    <div style="float:right; padding:0 10px 20px" >
-                        <el-button type="danger" @click="submit" style="width:110px; font-size:18px">确定</el-button>
+                    <div style="float:right; padding: 20px" >
+                        <el-button type="danger" @click="submitOrder" style="width:110px; font-size:18px" :disabled="orderList.length === 0">确定</el-button>
                     </div>
 
                 </el-card>
@@ -79,37 +94,37 @@
                     </div>
                     <div>
                         <el-row>
-                            <el-col :span="8" v-for="(item,index) in 100" :key="index" style="padding:5px">
+                            <el-col :span="8" v-for="(item,index) in commodityList" :key="index" style="padding:5px">
                                 <el-card>
                                     <el-row class="commodity">
                                         <el-col :span="8">
-                                            <img src="//fuss10.elemecdn.com/1/e2/e8bf1273b9d4d268bdca6bc61ed46png.png?imageMogr2/thumbnail/100x100/format/webp/quality/85"
+                                            <img :src=item.pic_url
                                                  class="commodity-img" alt="">
                                         </el-col>
                                         <el-col :span="15" class="detail">
-                                            <div class="title">卤肉饭</div>
+                                            <div class="title">{{item.p_name}}</div>
                                             <el-row>
                                                 <el-col :span="12">
-                                                    <div>供货商：3</div>
+                                                    <div>供货商：{{item.p_supplier}}</div>
 
                                                 </el-col>
                                                 <el-col :span="12">
-                                                    <div>所属分类：3</div>
+                                                    <div>所属分类：{{item.p_type}}</div>
                                                 </el-col>
                                             </el-row>
-                                            <div>库存：3</div>
+                                            <div>库存：{{item.p_num}}</div>
                                             <el-row>
                                                 <el-col :span="12">
-                                                    <div class="price">批发价格：3</div>
+                                                    <div class="price">批发价格：{{item.pf_price}}</div>
                                                 </el-col>
 
                                                 <el-col :span="12">
-                                                    <div class="price">零售价格：3</div>
+                                                    <div class="price">零售价格：{{item.ls_price}}</div>
 
                                                 </el-col>
                                             </el-row>
                                             <el-button style="float:right;    margin:10px 0;" size="small" type="primary" round
-                                                       @click="pushCommodity()">加入入库单
+                                                       @click="pushCommodity(item)">加入入库单
                                             </el-button>
                                         </el-col>
                                     </el-row>

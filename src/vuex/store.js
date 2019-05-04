@@ -6,6 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         user: {
+            id:'',
+            nickname:'',
             username: '',
             user_type: '',
             last_login_time:'',
@@ -19,8 +21,12 @@ export default new Vuex.Store({
         },
         logout: (state) => {
             state.user = {
+                id:'',
+                nickname:'',
                 username: '',
-                user_type: ''
+                user_type: '',
+                last_login_time:'',
+                create_time:'',
             };
             localStorage.clear();
         }

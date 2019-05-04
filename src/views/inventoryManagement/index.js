@@ -5,17 +5,19 @@
  */
 
 // import  from '';
+import commodity from '@/mixins/commodity'
 
 export default {
 
     name: 'inventoryManagement',
+    mixins: [commodity],
     components: {},
     data() {
         return {
             selIndex: '',
             dialogVisible: false,
             formData: {
-                number:0,
+                number: 0,
             },
             rules: {
                 name: [{required: true, message: '商品名不能为空', trigger: 'blur'},],
@@ -35,18 +37,29 @@ export default {
         submit() {
             this.selIndex = ''
         },
-        deleteItem() {
-
+        deleteItem(item) {
+            this.$http({
+                method: 'post',
+                url: '/prolist/delete',
+                data:{p_id:item.p_id}
+            }).then((res) => {
+                this.commodityList = JSON.parse(res.data.result);
+                this.$notify({
+                    title: '提示',
+                    message: '删除商品列表成功',
+                    type: 'success',
+                });
+            }).catch((res) => {
+                this.$notify({
+                    title: '提示',
+                    message: '删除商品列表失败',
+                    type: 'error',
+                });
+            })
         },
         pushCommodity() {
+        },
 
-        }
     },
-    computed: {}
-    ,
-    mounted() {
-
-    }
-
-}
-;
+    computed: {},
+};

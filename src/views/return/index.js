@@ -5,6 +5,7 @@
  */
 
 // import  from '';
+import jsbarcode from 'jsbarcode';
 
 export default {
 
@@ -31,17 +32,25 @@ export default {
         };
     },
     methods: {
-        editItem() {
+        editItem(item) {
 
         },
         deleteItem() {
 
+        },
+        createBarcode () {
+            jsbarcode('#canvas', '1421784529458125', {
+                lineColor: '#000',
+                width: 1,
+                height: 40,
+                displayValue: false
+            })
         }
 
     },
     computed: {},
     mounted() {
-
+        this.createBarcode()
     }
 
 };

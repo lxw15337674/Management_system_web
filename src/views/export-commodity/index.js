@@ -5,10 +5,11 @@
  */
 
 // import  from '';
+import commodity from '@/mixins/commodity'
 
 export default {
-
     name: 'exportCommodity',
+    mixins: [commodity],
     components: {},
     data() {
         return {
@@ -20,19 +21,26 @@ export default {
                 phone: [{required: true, message: '客户手机号不能为空', trigger: 'blur'},],
                 expressNumber: [{required: true, message: '快递单号不能为空', trigger: 'blur'},],
                 },
-            submitVisible:false
+            submitVisible:false,
+            orderList:[],
         };
     },
     methods: {
-        pushCommodity() {
+        pushCommodity(item) {
+            for (let i of this.orderList) {
+                if (item.p_id === i.p_id) {
+                    i.p_num += 1;
+                    return
+                }
+            }
+            this.orderList.push({p_id: item.p_id, ls_price:item.ls_price, user_id: this.$store.state.user.id, p_name: item.p_name, p_num: 1})
         },
         submit(){
+
+        },
+        submitOrder(){
 
         }
     },
     computed: {},
-    mounted() {
-
-    }
-
 };

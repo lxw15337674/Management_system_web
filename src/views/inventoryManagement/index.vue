@@ -18,8 +18,8 @@
                     商品分类：
                 </el-col>
                 <el-col :span="22">
-                    <el-button type="text" style="padding: 10px 20px;font-size:18px; margin:0" v-for="item in 16">
-                        分类{{item}}
+                    <el-button type="text" style="padding: 10px 20px;font-size:18px; margin:0" v-for="item in typeList">
+                        {{item}}
                     </el-button>
 
                 </el-col>
@@ -31,7 +31,8 @@
             </div>
             <div>
                 <el-row>
-                    <el-col :span="6" v-for="(item,index) in 100" :key="index" style="padding:5px">
+                    <el-col :span="8" v-for="(item,index) in commodityList" :key="index" style="padding:5px">
+
                         <el-card style="    padding: 20px;" class="commodity">
                             <template v-if="index===selIndex">
                                 <el-form :model="formData"
@@ -73,33 +74,40 @@
                                 </el-form>
                             </template>
                             <template v-else>
-                                <div>
-                                    图片：
-                                    <img src="//fuss10.elemecdn.com/1/e2/e8bf1273b9d4d268bdca6bc61ed46png.png?imageMogr2/thumbnail/100x100/format/webp/quality/85"
-                                         class="commodity-img" alt="">
-                                </div>
-                                <div>
-                                    <div class="title">商品名：卤肉饭</div>
+                                <el-row class="commodity">
+                                    <el-col :span="8">
+                                        <img :src=item.pic_url
+                                             class="commodity-img" alt="">
+                                    </el-col>
+                                    <el-col :span="15" class="detail">
+                                        <div class="title">{{item.p_name}}</div>
+                                        <el-row>
+                                            <el-col :span="12">
+                                                <div>供货商：{{item.p_supplier}}</div>
 
-                                    <div class="price">供货商：3</div>
-                                    <div class="price">所属分类：3</div>
-                                    <el-row>
-                                        <el-col :span="12">
-                                            <div class="price">批发价格：3</div>
-                                        </el-col>
+                                            </el-col>
+                                            <el-col :span="12">
+                                                <div>所属分类：{{item.p_type}}</div>
+                                            </el-col>
+                                        </el-row>
+                                        <div>库存：{{item.p_num}}</div>
+                                        <el-row>
+                                            <el-col :span="12">
+                                                <div class="price">批发价格：{{item.pf_price}}</div>
+                                            </el-col>
 
-                                        <el-col :span="12">
-                                            <div class="price">零售价格：3</div>
+                                            <el-col :span="12">
+                                                <div class="price">零售价格：{{item.ls_price}}</div>
 
-                                        </el-col>
-                                    </el-row>
-                                    <div>库存：3</div>
-                                </div>
+                                            </el-col>
+                                        </el-row>
+                                    </el-col>
+                                </el-row>
                                 <el-button class="handle-button" size="medium" type="primary"
                                            @click="edit(index)">编辑
                                 </el-button>
                                 <el-button class="handle-button" size="medium" type="danger"
-                                           @click="deleteItem()">删除
+                                           @click="deleteItem(item)">删除
                                 </el-button>
                             </template>
                         </el-card>
@@ -186,7 +194,6 @@
             width: 120px
 
         }
-
 
 
         .handle-button {

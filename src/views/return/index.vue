@@ -14,6 +14,8 @@
         <div class="return-title">
             订单详情
         </div>
+        <svg id="canvas"></svg>
+
         <el-table
                 :data="tableData"
                 border
