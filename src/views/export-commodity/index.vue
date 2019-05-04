@@ -31,10 +31,7 @@
                                 <el-input-number v-model="scope.row.num"  size="mini"  :min="1"></el-input-number>
                             </template>
                         </el-table-column>
-                        <el-table-column
-                                prop="pf_price"
-                                label="批发金额">
-                        </el-table-column>
+
                         <el-table-column
                                 prop="ls_price"
                                 label="零售金额">
@@ -49,24 +46,24 @@
                         </el-table-column>
                     </el-table>
                     <div style="text-align:right; padding:10px 20px" >
-                        <span style="font-size:46px ;color:red"><span style="font-size: 20px">¥</span>100</span>
+                        <span style="font-size:46px ;color:red"><span style="font-size: 20px">¥</span>{{total}}</span>
                     </div>
                     <div class="pd20">
                         <el-form :model="formData"
                                  ref="formData"
                                  label-width="100px"
                                  :rules="rules">
-                            <el-form-item label="客户姓名" prop="name">
-                                <el-input clearable v-model="formData.name" placeholder="请输入客户姓名"></el-input>
+                            <el-form-item label="客户姓名" prop="ku_name">
+                                <el-input clearable v-model="formData.ku_name" placeholder="请输入客户姓名"></el-input>
                             </el-form-item>
-                            <el-form-item label="客户地址" prop="address">
-                                <el-input clearable v-model="formData.address" placeholder="请输入客户地址"></el-input>
+                            <el-form-item label="客户地址" prop="ku_address">
+                                <el-input clearable v-model="formData.ku_address" placeholder="请输入客户地址"></el-input>
                             </el-form-item>
-                            <el-form-item label="客户手机号" prop="phone" >
-                                <el-input clearable v-model="formData.phone" placeholder="请输入客户手机号"></el-input>
+                            <el-form-item label="客户手机号" prop="ku_phone" >
+                                <el-input clearable v-model="formData.ku_phone" placeholder="请输入客户手机号"></el-input>
                             </el-form-item>
-                            <el-form-item label="快递单号" prop="expressNumber">
-                                <el-input clearable v-model="formData.expressNumber" placeholder="请输入快递单号"></el-input>
+                            <el-form-item label="快递单号" prop="exp_num">
+                                <el-input clearable v-model="formData.exp_num" placeholder="请输入快递单号"></el-input>
                             </el-form-item>
                         </el-form>
                     </div>

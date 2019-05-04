@@ -49,7 +49,7 @@ const routes = [
         name: 'return',
         meta: {
             showInSideBar: true,
-            title: '退换货处理',
+            title: '订单详情',
         },
     },
 
@@ -80,44 +80,6 @@ const routes = [
             title: '商品出库统计',
         },
     },
-    // {
-    //     path: "/staffExport",
-    //     component: () => import ("@/views/report/staffExport/index.vue"),
-    //     name: 'staffExport',
-    //     meta: {
-    //         showInSideBar: true,
-    //         title: '员工出库统计',
-    //     },
-    // },
-    // {
-    //     path: "/staffImport",
-    //     component: () => import ("@/views/report/staffImport/index.vue"),
-    //     name: 'staffImport',
-    //     meta: {
-    //         showInSideBar: true,
-    //         title: '员工入库统计',
-    //     },
-    // },
-    // {
-    //     path: "/profit",
-    //     component: () => import ("@/views/report/profit/index.vue"),
-    //     name: 'profit',
-    //     meta: {
-    //         showInSideBar: true,
-    //         title: '利润统计',
-    //     },
-    // },
-    // {
-    //     path: "/order",
-    //     component: () => import ("@/views/report/order/index.vue"),
-    //     name: 'order',
-    //     meta: {
-    //         showInSideBar: true,
-    //         title: '订单统计',
-    //     },
-    // },
-
-
     {
         path: "/userManager",
         component: () => import ("@/views/userManager/index.vue"),

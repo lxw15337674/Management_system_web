@@ -26,28 +26,23 @@ export default {
             this.formData = item
         },
         editSubmit(editFormData) {
-            debugger
-            this.$refs['editFormData'].validate((valid) => {
-                if (valid) {
-                    this.$http({
-                        method: 'post',
-                        url: '/proinfo/update',
-                        data: editFormData
-                    }).then((res) => {
-                        this.$notify({
-                            title: '提示',
-                            message: '编辑商品成功',
-                            type: 'success',
-                        });
-                        this.selIndex = ''
-                    }).catch((res) => {
-                        this.$notify({
-                            title: '提示',
-                            message: '编辑商品失败',
-                            type: 'error',
-                        });
-                    })
-                }
+            this.$http({
+                method: 'post',
+                url: '/proinfo/update',
+                data: editFormData
+            }).then((res) => {
+                this.$notify({
+                    title: '提示',
+                    message: '编辑商品成功',
+                    type: 'success',
+                });
+                this.selIndex = ''
+            }).catch((res) => {
+                this.$notify({
+                    title: '提示',
+                    message: '编辑商品失败',
+                    type: 'error',
+                });
             })
         },
         deleteItem(item) {
