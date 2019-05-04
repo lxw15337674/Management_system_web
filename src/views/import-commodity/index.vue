@@ -24,10 +24,10 @@
                                 label="商品">
                         </el-table-column>
                         <el-table-column
-                                prop="p_num"
+                                prop="num"
                                 label="数量">
                             <template slot-scope="scope">
-                                <el-input-number v-model="scope.row.p_num"  size="mini"  :min="1"></el-input-number>
+                                <el-input-number v-model="scope.row.num"  size="mini"  :min="1"></el-input-number>
                             </template>
                         </el-table-column>
                         <el-table-column label="操作">

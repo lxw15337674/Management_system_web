@@ -56,17 +56,18 @@ export default {
         pushCommodity(item) {
             for (let i of this.orderList) {
                 if (item.p_id === i.p_id) {
-                    i.p_num += 1;
+                    i.num += 1;
                     return
                 }
             }
-            this.orderList.push({p_id: item.p_id, user_id: this.$store.state.user.id, p_name: item.p_name, p_num: 1})
+            let obj = Object.assign(item, {user_id: this.$store.state.user.id,num:1});
+            this.orderList.push(obj);
         },
         submitOrder() {
             this.$http({
                 method: 'post',
                 url: '/store/input',
-                data: this.orderList
+                data: JSON.stringify(this.orderList, {user_id: this.$store.state.user.id})
             }).then((res) => {
                 this.$notify({
                     title: '提示',

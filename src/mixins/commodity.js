@@ -37,7 +37,6 @@ export default {
                 url: '/proinfo/getlist',
                 data: type ? {type: type} : null
             }).then((res) => {
-                debugger
                 this.commodityList = JSON.parse(res.data.result);
             }).catch((res) => {
                 this.$notify({

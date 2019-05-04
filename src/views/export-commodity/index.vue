@@ -24,18 +24,19 @@
                                 label="商品">
                         </el-table-column>
                         <el-table-column
-                                prop="p_num"
+                                :width="150"
+                                prop="num"
                                 label="数量">
                             <template slot-scope="scope">
-                                <el-input-number v-model="scope.row.p_num"  size="mini"  :min="1"></el-input-number>
+                                <el-input-number v-model="scope.row.num"  size="mini"  :min="1"></el-input-number>
                             </template>
                         </el-table-column>
                         <el-table-column
-                                prop="p_num"
+                                prop="pf_price"
                                 label="批发金额">
                         </el-table-column>
                         <el-table-column
-                                prop="p_num"
+                                prop="ls_price"
                                 label="零售金额">
                         </el-table-column>
                         <el-table-column label="操作">
