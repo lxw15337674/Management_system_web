@@ -18,6 +18,8 @@
                     商品分类：
                 </el-col>
                 <el-col :span="22">
+                    <el-button type="text" style="padding: 10px 20px;font-size:18px; margin:0"  @click="getCommodity()">所有分类</el-button>
+
                     <el-button type="text" style="padding: 10px 20px;font-size:18px; margin:0" v-for="item in typeList"
                                @click="getCommodity(item.p_type)">
                         {{item.p_type}}
@@ -57,15 +59,18 @@
                                     <el-form-item label="零售价格" prop="ls_price">
                                         <el-input clearable v-model="editFormData.ls_price" placeholder="请输入零售价格"></el-input>
                                     </el-form-item>
-                                    <el-form-item label="商品图片" prop="imgUrl">
-                                        <el-input clearable v-model="editFormData.imgUrl" placeholder="请输入商品图片"></el-input>
+                                    <el-form-item label="商品图片" prop="pic_url">
+                                        <el-input clearable v-model="editFormData.pic_url" placeholder="请输入商品图片"></el-input>
                                     </el-form-item>
                                     <el-form-item label="图片浏览">
-                                        <img :src="editFormData.imgUrl"
+                                        <img :src="editFormData.pic_url"
                                              class="commodity-img" alt="">
                                     </el-form-item>
                                     <el-button class="handle-button" size="medium" type="primary"
                                                @click="editSubmit(editFormData)">确定
+                                    </el-button>
+                                    <el-button class="handle-button" size="medium"
+                                               @click="selIndex=''">取消
                                     </el-button>
                                 </el-form>
                             </template>
@@ -134,11 +139,11 @@
                 <el-form-item label="零售价格" prop="ls_price">
                     <el-input clearable v-model="formData.ls_price" placeholder="请输入零售价格"></el-input>
                 </el-form-item>
-                <el-form-item label="商品图片" prop="imgUrl">
-                    <el-input clearable v-model="formData.imgUrl" placeholder="请输入商品图片"></el-input>
+                <el-form-item label="商品图片" prop="pic_url">
+                    <el-input clearable v-model="formData.pic_url" placeholder="请输入商品图片"></el-input>
                 </el-form-item>
                 <el-form-item label="图片浏览">
-                    <img :src="formData.imgUrl"
+                    <img :src="formData.pic_url"
                          class="commodity-img" alt="">
                 </el-form-item>
             </el-form>
@@ -180,7 +185,7 @@
 
 
         .commodity {
-            min-height: 180px;
+            min-height: 130px;
             font-size: 18px;
             line-height: 28px;
         }

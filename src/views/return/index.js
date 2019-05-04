@@ -20,7 +20,7 @@ export default {
                 classification: [{required: true, message: '分类不能为空', trigger: 'blur'},],
                 supplier: [{required: true, message: '供货商不能为空', trigger: 'blur'},],
                 wholesalePrice: [{required: true, message: '批发价格不能为空', trigger: 'blur'},],
-                imgUrl: [{required: true, message: '商品图片不能为空', trigger: 'blur'}],
+                pic_url: [{required: true, message: '商品图片不能为空', trigger: 'blur'}],
             },
             tableData: [{
                 id: '123',

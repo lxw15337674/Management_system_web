@@ -79,11 +79,11 @@
                     <el-row>
                         <el-col :span="2" style="color: #999;    padding: 12px;">商品分类：</el-col>
                         <el-col :span="22">
+                            <el-button type="text" style="padding: 10px 20px;font-size:18px; margin:0"  @click="getCommodity()">所有分类</el-button>
                             <el-button type="text" style="padding: 10px 20px;font-size:18px; margin:0" v-for="item in typeList"
                                        @click="getCommodity(item.p_type)">
                                 {{item.p_type}}
                             </el-button>
-
                         </el-col>
                     </el-row>
                 </div>
@@ -94,8 +94,8 @@
                     <div>
                         <el-row>
                             <el-col :span="8" v-for="(item,index) in commodityList" :key="index" style="padding:5px">
-                                <el-card>
-                                    <el-row class="commodity">
+                                <el-card class="commodity">
+                                    <el-row >
                                         <el-col :span="8">
                                             <img :src=item.pic_url
                                                  class="commodity-img" alt="">
@@ -172,9 +172,7 @@
         }
 
         .commodity {
-            height 120px
-
-
+            height 150px
         }
 
         .commodity-img {

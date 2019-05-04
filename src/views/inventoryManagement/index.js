@@ -23,7 +23,7 @@ export default {
     methods: {
         edit(index, item) {
             this.selIndex = index;
-            this.formData = item
+            this.editFormData = item
         },
         editSubmit(editFormData) {
             this.$http({
@@ -48,7 +48,7 @@ export default {
         deleteItem(item) {
             this.$http({
                 method: 'post',
-                url: '/prolist/delete',
+                url: '/proinfo/delete',
                 data: {p_id: item.p_id}
             }).then((res) => {
                 this.commodityList = JSON.parse(res.data.result);
