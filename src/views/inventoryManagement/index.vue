@@ -75,33 +75,19 @@
                                 </el-form>
                             </template>
                             <template v-else>
-                                <el-row class="commodity">
-                                    <el-col :span="8">
-                                        <img :src=item.pic_url
+                                <el-row>
+                                    <el-col :span="9" style="padding:20px 5px">
+                                        <img src="//fuss10.elemecdn.com/4/ec/8a5907b8a881258e4859cf63dc70bpng.png?imageMogr2/thumbnail/100x100/format/webp/quality/85"
                                              class="commodity-img" alt="">
                                     </el-col>
                                     <el-col :span="15" class="detail">
                                         <div class="title">{{item.p_name}}</div>
-                                        <el-row>
-                                            <el-col :span="12">
-                                                <div>供货商：{{item.p_supplier}}</div>
+                                        <div>供货商：{{item.p_supplier}}</div>
 
-                                            </el-col>
-                                            <el-col :span="12">
-                                                <div>所属分类：{{item.p_type}}</div>
-                                            </el-col>
-                                        </el-row>
+                                        <div>所属分类：{{item.p_type}}</div>
                                         <div>库存：{{item.p_num}}</div>
-                                        <el-row>
-                                            <el-col :span="12">
-                                                <div class="price">批发价格：{{item.pf_price}}</div>
-                                            </el-col>
-
-                                            <el-col :span="12">
-                                                <div class="price">零售价格：{{item.ls_price}}</div>
-
-                                            </el-col>
-                                        </el-row>
+                                        <div class="price">批发价格：¥{{item.pf_price}}</div>
+                                        <div class="price">零售价格：¥{{item.ls_price}}</div>
                                     </el-col>
                                 </el-row>
                                 <el-button class="handle-button" size="medium" type="primary"
@@ -185,9 +171,9 @@
 
 
         .commodity {
-            min-height: 130px;
+            min-height: 190px;
             font-size: 18px;
-            line-height: 28px;
+            line-height: 22px;
         }
 
         .commodity-img {

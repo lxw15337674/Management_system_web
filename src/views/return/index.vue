@@ -14,36 +14,35 @@
         <div class="return-title">
             订单详情
         </div>
-        <svg id="canvas"></svg>
-
         <el-table
-                :data="tableData"
+                :data="orderList"
                 border
                 style="width: 100%">
             <el-table-column label="订单号" prop="id">
             </el-table-column>
-            <el-table-column label="快递单号" prop="expressNumber">
+            <el-table-column label="快递单号" prop="exp_num">
             </el-table-column>
-            <el-table-column label="客户姓名" prop="name">
+            <el-table-column label="客户姓名" prop="ku_name">
             </el-table-column>
-            <el-table-column label="客户地址" prop="address" width="400">
+            <el-table-column label="客户地址" prop="ku_address" width="350">
             </el-table-column>
-            <el-table-column label="客户手机号" prop="phone">
+            <el-table-column label="客户手机号" prop="ku_phone">
             </el-table-column>
-            <el-table-column label="下单时间" prop="createTime">
+            <el-table-column label="下单时间" prop="make_date" width="200">
             </el-table-column>
-
             <el-table-column
                     fixed="right"
                     label="操作"
-                    width="400">
+                    width="350">
                 <template slot-scope="scope">
-                    <el-button @click="editItem(scope.row)" type="success" size="small" class="handle-button" plain>
+                    <el-button @click="detailItem(scope.row)" type="info" size="small" class="handle-button" plain>
                         详情
                     </el-button>
-
+                    <el-button @click="editItem(scope.row)" type="success" size="small" class="handle-button" plain>
+                        编辑
+                    </el-button>
                     <el-button @click="editItem(scope.row)" type="primary" size="small" class="handle-button" plain>
-                        退换货处理
+                        退货处理
                     </el-button>
                     <el-button @click="deleteItem(scope.row)" type="danger" size="small" class="handle-button"
                                plain>删除
@@ -51,6 +50,18 @@
                 </template>
             </el-table-column>
         </el-table>
+        <el-dialog
+                title="商品详情"
+                :visible.sync="dialogVisible"
+                width="30%">
+            <svg id="svgcode"></svg>
+            <div>
+            </div>
+            <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="dialogVisible=false">确 定</el-button>
+  </span>
+        </el-dialog>
     </div>
 
 </template>
@@ -76,8 +87,7 @@
         }
 
         .handle-button {
-            min-width: 80px;
-            font-size: 16px;
+            min-width: 60px;
             margin: 0 5px
         }
     }

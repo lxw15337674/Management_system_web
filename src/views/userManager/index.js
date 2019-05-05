@@ -44,6 +44,19 @@ export default {
 
         },
         deleteRow(row){
+            this.$http({
+                method: 'post',
+                url: '/index/delete',
+                data:{id:row.id}
+            }).then((res) => {
+                this.userList = JSON.parse(res.data.result);
+            }).catch((res) => {
+                this.$notify({
+                    title: '提示',
+                    message: '获取用户列表失败',
+                    type:'error',
+                });
+            })
 
         }
     },

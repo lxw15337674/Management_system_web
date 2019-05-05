@@ -27,7 +27,8 @@
                                 prop="num"
                                 label="数量">
                             <template slot-scope="scope">
-                                <el-input-number v-model="scope.row.num"  size="mini"  :min="1" :max="scope.row.p_num"></el-input-number>
+                                <el-input-number v-model="scope.row.num" size="mini" :min="1"
+                                                 :max="scope.row.p_num"></el-input-number>
                             </template>
                         </el-table-column>
                         <el-table-column label="操作">
@@ -35,23 +36,29 @@
                                 <el-button
                                         size="mini"
                                         type="danger"
-                                        @click="orderList.splice(scope.$index,1)">删除</el-button>
+                                        @click="orderList.splice(scope.$index,1)">删除
+                                </el-button>
                             </template>
                         </el-table-column>
                     </el-table>
-                    <div style="float:right; padding: 20px" >
-                        <el-button type="danger" @click="submitOrder" style="width:110px; font-size:18px" :disabled="orderList.length === 0">确定</el-button>
+                    <div style="float:right; padding: 20px">
+                        <el-button type="danger" @click="submitOrder" style="width:110px; font-size:18px"
+                                   :disabled="orderList.length === 0">确定
+                        </el-button>
                     </div>
                 </el-card>
             </el-col>
             <el-col :span="16">
                 <div class="content" style="min-height: 60px; margin-bottom:30px">
                     <el-row>
-                        <el-col :span="2" style="color: #999;    padding: 12px;">商品分类：</el-col>
-                        <el-col :span="22">
-                            <el-button type="text" style="padding: 10px 20px;font-size:18px; margin:0"  @click="getCommodity()">所有分类</el-button>
-                            <el-button type="text" style="padding: 10px 20px;font-size:18px; margin:0" v-for="item in typeList"
-                            @click="getCommodity(item.p_type)">
+                        <el-col :span="3" style="color: #999;    padding: 12px;">商品分类：</el-col>
+                        <el-col :span="21">
+                            <el-button type="text" style="padding: 10px 20px;font-size:18px; margin:0"
+                                       @click="getCommodity()">所有分类
+                            </el-button>
+                            <el-button type="text" style="padding: 10px 20px;font-size:18px; margin:0"
+                                       v-for="(item,index) in typeList" :key="index"
+                                       @click="getCommodity(item.p_type)">
                                 {{item.p_type}}
                             </el-button>
                         </el-col>
@@ -67,34 +74,21 @@
                         <el-row>
                             <el-col :span="8" v-for="(item,index) in commodityList" :key="index" style="padding:5px">
                                 <el-card class="commodity">
-                                    <el-row >
-                                        <el-col :span="8">
-                                            <img :src=item.pic_url
+                                    <el-row>
+                                        <el-col :span="9" style="padding:20px 5px">
+                                            <img src="//fuss10.elemecdn.com/4/ec/8a5907b8a881258e4859cf63dc70bpng.png?imageMogr2/thumbnail/100x100/format/webp/quality/85"
                                                  class="commodity-img" alt="">
                                         </el-col>
                                         <el-col :span="15" class="detail">
                                             <div class="title">{{item.p_name}}</div>
-                                            <el-row>
-                                                <el-col :span="12">
-                                                    <div>供货商：{{item.p_supplier}}</div>
+                                            <div>供货商：{{item.p_supplier}}</div>
 
-                                                </el-col>
-                                                <el-col :span="12">
-                                                    <div>所属分类：{{item.p_type}}</div>
-                                                </el-col>
-                                            </el-row>
+                                            <div>所属分类：{{item.p_type}}</div>
                                             <div>库存：{{item.p_num}}</div>
-                                            <el-row>
-                                                <el-col :span="12">
-                                                    <div class="price">批发价格：{{item.pf_price}}</div>
-                                                </el-col>
-
-                                                <el-col :span="12">
-                                                    <div class="price">零售价格：{{item.ls_price}}</div>
-
-                                                </el-col>
-                                            </el-row>
-                                            <el-button style="float:right;    margin:10px 0;" size="small" type="primary" round
+                                            <div class="price">批发价格：¥{{item.pf_price}}</div>
+                                            <div class="price">零售价格：¥{{item.ls_price}}</div>
+                                            <el-button style="float:right;    margin:10px 10px;" size="small"
+                                                       type="primary" round
                                                        @click="pushCommodity(item)">加入入库单
                                             </el-button>
                                         </el-col>
@@ -156,7 +150,7 @@
 
 <style lang="stylus">
     .import-commodity {
-        padding: 1% 5%
+        padding: 1% 2%
 
         .order-detail {
             /*background white;*/
@@ -180,15 +174,17 @@
         }
 
         .commodity {
-            height 150px
+            height 190px
 
 
         }
 
         .commodity-img {
-            height: 100%
-            width: 120px
-
+            height: 100px
+            width: 100px
+            position: relative;
+            /*background-image: url("https://img.ithome.com/newsuploadfiles/2019/5/20190503_095829_648.png@wm_1,k_aW1nL3FkLnBuZw==,y_20,o_100,x_20,g_7");*/
+            /*background-size: 100% 100%;*/
         }
 
         .el-card:hover {
@@ -200,7 +196,7 @@
             /*height 100%*/
             font-size: 15px;
             line-height: 20px;
-            padding: 10px 0 ;
+            padding: 10px 0;
         }
 
     }
