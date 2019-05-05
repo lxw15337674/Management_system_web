@@ -25,7 +25,8 @@ export default {
                             message: '新建商品成功',
                             type: 'success',
                         });
-                        this.getCommodity()
+                        this.getCommodity();
+                        this.getTypeList()
                     }).catch((res) => {
                         this.$notify({
                             title: '提示',

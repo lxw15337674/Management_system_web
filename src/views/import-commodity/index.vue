@@ -76,7 +76,7 @@
                                 <el-card class="commodity">
                                     <el-row>
                                         <el-col :span="9" style="padding:20px 5px">
-                                            <img src="//fuss10.elemecdn.com/4/ec/8a5907b8a881258e4859cf63dc70bpng.png?imageMogr2/thumbnail/100x100/format/webp/quality/85"
+                                            <img :src="item.pic_url"
                                                  class="commodity-img" alt="">
                                         </el-col>
                                         <el-col :span="15" class="detail">

@@ -26,7 +26,7 @@
     };
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
     .app {
         height 100%
     }
@@ -41,5 +41,21 @@
         padding: 32px;
         background-color: #f0f2f5;
         flex: 1
+    }
+
+    .content {
+        .el-dialog__header {
+            background: #5c6de8;
+            padding: 14px 20px 10px;
+        }
+
+        .el-dialog__title {
+            color: #fff;
+            font-weight: bold;
+        }
+         .el-dialog__headerbtn .el-dialog__close {
+            color: #fff;
+            font-weight: bold;
+        }
     }
 </style>

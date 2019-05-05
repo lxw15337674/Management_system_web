@@ -51,9 +51,9 @@ export default {
         submitOrder() {
             this.$refs['formData'].validate((valid) => {
                 if (valid) {
-                    let orderList =[];
-                    for (let item of this.orderList){
-                        orderList.push({p_id:item.p_id,num:item.num,p_name:item.p_name})
+                    let orderList = [];
+                    for (let item of this.orderList) {
+                        orderList.push({p_id: item.p_id, num: item.num, p_name: item.p_name})
                     }
                     let obj = {
                         orderList: orderList,
@@ -70,6 +70,10 @@ export default {
                             message: '出库成功',
                             type: 'success',
                         });
+                        this.orderList = [];
+                        this.formData = {};
+                        this.getCommodity();
+                        this.getTypeList()
                     }).catch((res) => {
                         this.$notify({
                             title: '提示',

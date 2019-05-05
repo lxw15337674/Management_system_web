@@ -15,7 +15,7 @@ export default {
         return {
             dialogVisible: false,
             formData: {},
-            orderDetail:{},
+            orderDetail:[],
             rules: {
                 name: [{required: true, message: '商品名不能为空', trigger: 'blur'},],
                 classification: [{required: true, message: '分类不能为空', trigger: 'blur'},],
@@ -52,6 +52,7 @@ export default {
                 height: 40,
                 displayValue:false
             })
+
         },
         getOrderDetail(id) {
             this.$http({

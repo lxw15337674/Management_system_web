@@ -13,6 +13,7 @@ module.exports = {
 
     },
     devServer: {
+        port: 8086,
         // historyApiFallback: true,
         // proxy: {
         //     '/api': {

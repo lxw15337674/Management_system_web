@@ -43,6 +43,8 @@ export default {
                     type: 'success',
                 });
                 this.orderList = [];
+                this.getCommodity();
+                this.getTypeList()
             }).catch((res) => {
                 this.$notify({
                     title: '提示',

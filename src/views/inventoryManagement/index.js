@@ -15,15 +15,16 @@ export default {
     components: {},
     data() {
         return {
-            selIndex: '',
             dialogVisible: false,
-            editFormData: {},
+            formData: {},
+            title: '修改商品',
         };
     },
     methods: {
-        edit(index, item) {
-            this.selIndex = index;
-            this.editFormData = item
+        edit(item) {
+            this.formData = JSON.parse(JSON.stringify(item));
+            this.title = '修改商品';
+            this.dialogVisible = true
         },
         editSubmit(editFormData) {
             this.$http({
@@ -44,6 +45,11 @@ export default {
                     type: 'error',
                 });
             })
+        },
+        createCommodityDialog() {
+            this.formData = {};
+            this.title = '新建商品';
+            this.dialogVisible = true
         },
         deleteItem(item) {
             this.$http({
