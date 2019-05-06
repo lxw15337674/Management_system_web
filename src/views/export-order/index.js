@@ -5,12 +5,14 @@
  */
 
 // import  from '';
-import jsbarcode from 'jsbarcode';
+// import jsbarcode from 'jsbarcode';
+import VueBarcode from 'vue-barcode';
+
 
 export default {
 
     name: 'return',
-    components: {},
+    components: {    'barcode': VueBarcode},
     data() {
         return {
             dialogVisible: false,
@@ -30,29 +32,37 @@ export default {
                 address: '123',
                 phone: '123',
                 expressNUmber: '123'
-            }]
+            }],
+            selId:''
+
         };
     },
     methods: {
-        editItem(item) {
-
+        returnOrder(item) {
+            this.$http({
+                method: 'post',
+                url: 'store/salesreturn',
+                data: {'id': item.id}
+            }).then((res) => {
+                this.$notify({
+                    title: '提示',
+                    message: '退货成功',
+                    type: 'success',
+                });
+                this.getOrderList();
+            }).catch((res) => {
+                this.$notify({
+                    title: '提示',
+                    message: '退货失败',
+                    type: 'error',
+                });
+            })
         },
-        deleteItem() {
 
-        },
         detailItem(item) {
+            this.selId=item.id;
             this.dialogVisible = true;
             this.getOrderDetail(item.id);
-            this.createCodeImg(item.id)
-        },
-        createCodeImg(id) {
-            jsbarcode('#svgcode', id, {
-                lineColor: '#000',
-                width: 2,
-                height: 40,
-                displayValue:false
-            })
-
         },
         getOrderDetail(id) {
             this.$http({
@@ -73,6 +83,7 @@ export default {
             this.$http({
                 method: 'post',
                 url: 'store/getlist',
+                data:{s_type:'1'}
             }).then((res) => {
                 this.orderList = JSON.parse(res.data.result);
             }).catch((res) => {
@@ -87,7 +98,6 @@ export default {
     },
     computed: {},
     mounted() {
-        // this.createBarcode();
         this.getOrderList();
     }
 

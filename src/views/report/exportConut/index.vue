@@ -13,25 +13,27 @@
     <div class="Count">
         <div style="padding:3% 5%; background:white">
             <div class="title">
-                商品出库统计
+                商品入库统计
             </div>
             <el-table
-                    :data="tableData"
+                    :data="orderList"
                     border
                     style="width: 100%">
-                <el-table-column label="商品名" prop="">
+                <el-table-column label="商品名" prop="p_name">
                 </el-table-column>
-                <el-table-column label="供货商" prop="">
+                <el-table-column label="供货商" prop="p_supplier">
                 </el-table-column>
-                <el-table-column label="所属分类" prop="">
+                <el-table-column label="所属分类" prop="p_type">
                 </el-table-column>
-                <el-table-column label="库存" prop="" width="">
+                <el-table-column label="出库数量" prop="num" width="">
                 </el-table-column>
-                <el-table-column label="批发价格" prop="">
+                <el-table-column label="批发价格" prop="pf_price">
                 </el-table-column>
-                <el-table-column label="零售价格" prop="">
+                <el-table-column label="零售价格" prop="ls_price">
                 </el-table-column>
-                <el-table-column label="出库时间" prop="createTime">
+                <el-table-column label="出库时间" prop="create_time">
+                </el-table-column>
+                <el-table-column label="操作人" prop="username">
                 </el-table-column>
             </el-table>
         </div>

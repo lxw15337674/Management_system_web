@@ -3,11 +3,16 @@
 </template>
 
 <script>
+    import getData from '@/mixins/getEchartsData'
+
     export default {
         name: 'ExportEcharts',
+        mixins:[getData],
         components: {},
         data() {
-            return {};
+            return {
+
+            };
         },
         methods: {
             init() {
@@ -15,7 +20,7 @@
                 let myChart = this.$echarts.init(document.getElementById('ExportEcharts'))
                 // 绘制图表
                 myChart.setOption(this.option);
-            }
+            },
         },
         computed: {
             option() {
@@ -54,20 +59,15 @@
                                     show: false
                                 }
                             },
-                            data: [
-                                {value: 335, name: '直接访问'},
-                                {value: 310, name: '邮件营销'},
-                                {value: 234, name: '联盟广告'},
-                                {value: 135, name: '视频广告'},
-                                {value: 1548, name: '搜索引擎'}
-                            ]
+                            data: this.echartsData
                         }
                     ]
                 };
             }
         },
         mounted() {
-            this.init()
+            this.getData('outprocount')
+
         }
     }
 </script>

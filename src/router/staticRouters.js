@@ -43,23 +43,23 @@ const routes = [
             title: '库存管理',
         }
     },
-    {
-        path: "/return",
-        component: () => import ("@/views/return/index.vue"),
-        name: 'return',
-        meta: {
-            showInSideBar: true,
-            title: '订单详情',
-        },
-    },
 
     {
-        path: "/reportCount",
-        name: 'reportCount',
-        component: () => import ("@/views/report/reportCount/index.vue"),
+        path: "/export-order",
+        component: () => import ("@/views/export-order/index.vue"),
+        name: 'export-order',
         meta: {
             showInSideBar: true,
-            title: '报表统计',
+            title: '出库单详情',
+        },
+    },
+    {
+        path: "/importOrder",
+        component: () => import ("@/views/import-order/index.vue"),
+        name: 'importOrder',
+        meta: {
+            showInSideBar: true,
+            title: '入库单详情',
         },
     },
     {
@@ -78,6 +78,16 @@ const routes = [
         meta: {
             showInSideBar: true,
             title: '商品出库统计',
+        },
+    },
+
+    {
+        path: "/reportCount",
+        name: 'reportCount',
+        component: () => import ("@/views/report/reportCount/index.vue"),
+        meta: {
+            showInSideBar: true,
+            title: '报表统计',
         },
     },
     {

@@ -20,29 +20,24 @@
                 style="width: 100%">
             <el-table-column label="订单号" prop="id">
             </el-table-column>
-            <el-table-column label="快递单号" prop="exp_num">
+
+            <el-table-column label="下单时间" prop="create_time" width="200">
             </el-table-column>
-            <el-table-column label="客户姓名" prop="ku_name">
-            </el-table-column>
-            <el-table-column label="客户地址" prop="ku_address" width="350">
-            </el-table-column>
-            <el-table-column label="客户手机号" prop="ku_phone">
-            </el-table-column>
-            <el-table-column label="下单时间" prop="make_date" width="200">
+
+            <el-table-column label="条形码" width="200">
+                <template slot-scope="scope">
+                    <barcode :value="scope.row.id" width="2" height="60"  displayValue=false >
+                        Show this if the rendering fails.
+                    </barcode>
+                </template>
             </el-table-column>
             <el-table-column
                     fixed="right"
                     label="操作"
                     width="350">
                 <template slot-scope="scope">
-                    <el-button @click="detailItem(scope.row)" type="info" size="small" class="handle-button" plain>
+                    <el-button @click="detailItem(scope.row)" type="success" size="small" class="handle-button" plain>
                         详情
-                    </el-button>
-<!--                    <el-button @click="editItem(scope.row)" type="success" size="small" class="handle-button" plain>-->
-<!--                        编辑-->
-<!--                    </el-button>-->
-                    <el-button @click="editItem(scope.row)" type="primary" size="small" class="handle-button" plain>
-                        退货处理
                     </el-button>
                 </template>
             </el-table-column>
@@ -51,7 +46,6 @@
                 title="商品详情"
                 :visible.sync="dialogVisible"
                 width="60%">
-            <svg id="svgcode"></svg>
             <div>
                 <el-table
                         :data="orderDetail"
@@ -72,8 +66,6 @@
                 </el-table>
             </div>
             <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible=false">确 定</el-button>
   </span>
         </el-dialog>
     </div>

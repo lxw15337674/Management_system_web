@@ -3,11 +3,18 @@
 </template>
 
 <script>
+    import getData from '@/mixins/getEchartsData'
+    const colorList = ['#FF6464', '#0D913C', '#1F77CE', '#10BCC4', '#8BD710', '#1052D7'];
+
     export default {
         name: 'importEcharts',
+        mixins:[getData],
+
         components: {},
         data() {
-            return {};
+            return {
+
+            };
         },
         methods: {
             init() {
@@ -20,6 +27,7 @@
         computed: {
             option() {
                 return {
+                    color:colorList,
                     title: {
                         text: '商品出库统计',
                         x: 'center'
@@ -54,20 +62,15 @@
                                     show: false
                                 }
                             },
-                            data: [
-                                {value: 335, name: '直接访问'},
-                                {value: 310, name: '邮件营销'},
-                                {value: 234, name: '联盟广告'},
-                                {value: 135, name: '视频广告'},
-                                {value: 1548, name: '搜索引擎'}
-                            ]
+                            data:this.echartsData
                         }
                     ]
                 };
             }
         },
         mounted() {
-            this.init()
+
+            this.getData('inputprocount')
         }
     }
 </script>
