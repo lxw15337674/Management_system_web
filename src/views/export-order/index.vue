@@ -20,17 +20,26 @@
                 style="width: 100%">
             <el-table-column label="订单号" prop="id">
             </el-table-column>
+            <el-table-column label="操作人" prop="nickname" >
+            </el-table-column>
+            <el-table-column label="商品总数" prop="p_num" >
+            </el-table-column>
+            <el-table-column label="下单时间" prop="create_time" width="200">
+            </el-table-column>
             <el-table-column label="快递单号" prop="exp_num">
             </el-table-column>
             <el-table-column label="客户姓名" prop="ku_name">
             </el-table-column>
-            <el-table-column label="客户地址" prop="ku_address" width="350">
+            <el-table-column label="客户地址" prop="ku_address" >
             </el-table-column>
             <el-table-column label="客户手机号" prop="ku_phone">
             </el-table-column>
             <el-table-column label="下单时间" prop="create_time" width="200">
             </el-table-column>
-
+            <el-table-column label="批发总价" prop="a_pf" >
+            </el-table-column>
+            <el-table-column label="零售总价" prop="a_ls" >
+            </el-table-column>
             <el-table-column label="条形码" width="200">
                 <template slot-scope="scope">
                     <barcode :value="scope.row.id" width="2" height="60"  displayValue=false >
@@ -41,7 +50,7 @@
             <el-table-column
                     fixed="right"
                     label="操作"
-                    width="350">
+                    width="200">
                 <template slot-scope="scope">
                     <el-button @click="detailItem(scope.row)" type="success" size="small" class="handle-button" plain>
                         详情

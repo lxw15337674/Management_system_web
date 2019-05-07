@@ -2,10 +2,11 @@ const routes = [
     {
         path: "/",
         component: () => import ("@/views/home/index.vue"),
+        redirect:'inventoryManagement',
         name: 'home',
         meta: {
             showInSideBar: true,
-            title: '首页',
+            title: '库存管理',
         },
     },
     {
@@ -39,7 +40,7 @@ const routes = [
         component: () => import ("@/views/inventoryManagement/index.vue"),
         name: 'inventoryManagement',
         meta: {
-            showInSideBar: true,
+            showInSideBar: false,
             title: '库存管理',
         }
     },

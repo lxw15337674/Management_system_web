@@ -12,14 +12,7 @@
 <template>
     <div class="home">
         <div style="padding:3% 30%; background:white">
-<!--            <el-row>-->
-<!--                <el-col :span="12">-->
-<!--                    <el-button type="success" class="button-card">入库</el-button>-->
-<!--                </el-col>-->
-<!--                <el-col :span="12">-->
-<!--                    <el-button type="primary" class="button-card">出库</el-button>-->
-<!--                </el-col>-->
-<!--            </el-row>-->
+            登录成功
         </div>
     </div>
 </template>

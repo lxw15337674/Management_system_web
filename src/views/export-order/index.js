@@ -86,6 +86,7 @@ export default {
                 data:{s_type:'1'}
             }).then((res) => {
                 this.orderList = JSON.parse(res.data.result);
+                debugger
             }).catch((res) => {
                 this.$notify({
                     title: '提示',

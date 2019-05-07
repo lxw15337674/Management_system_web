@@ -20,7 +20,12 @@
                 style="width: 100%">
             <el-table-column label="订单号" prop="id">
             </el-table-column>
-
+            <el-table-column label="批发总价" prop="pf" width="200">
+            </el-table-column>
+            <el-table-column label="操作人" prop="nickname" width="200">
+            </el-table-column>
+            <el-table-column label="商品总数" prop="p_num" width="200">
+            </el-table-column>
             <el-table-column label="下单时间" prop="create_time" width="200">
             </el-table-column>
 

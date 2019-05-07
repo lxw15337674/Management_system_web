@@ -22,7 +22,7 @@ export default {
                 {
                     label: '出货人员',
                     value: '2',
-                    permissionList: [{name: 'export', title: '出库'}]
+                    permissionList: [{name: 'inventoryManagement', title: '库存管理'},{name: 'export', title: '出库'},]
                 }
             ],
         };

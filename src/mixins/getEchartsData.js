@@ -40,7 +40,7 @@ export default {
                 let data = JSON.parse(res.data.result);
                 for (let item of data) {
                     this.lineKey.push(item.date);
-                    this.lineValue.push(item.lirun);
+                    this.lineValue.push(item.value);
                 }
                 // this.echartsData = JSON.parse(res.data.result);
             }).catch((res) => {
