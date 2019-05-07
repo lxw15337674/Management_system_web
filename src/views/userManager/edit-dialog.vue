@@ -22,10 +22,13 @@
                  label-width="80px"
                  :rules="rules">
             <el-form-item v-if="title==='新增'" label="用户名" prop="username">
-                <el-input clearable v-model="formData.username" placeholder="请选择用户名"  ></el-input>
+                <el-input clearable v-model="formData.username" placeholder="请输入用户名"  ></el-input>
+            </el-form-item>
+            <el-form-item v-if="title==='新增'" label="密码" prop="password">
+                <el-input clearable v-model="formData.password" placeholder="请输入密码"  ></el-input>
             </el-form-item>
             <el-form-item label="昵称" prop="nickname">
-                <el-input clearable v-model="formData.nickname" placeholder="请选择昵称"></el-input>
+                <el-input clearable v-model="formData.nickname" placeholder="请输入昵称"></el-input>
             </el-form-item>
             <el-form-item label="用户类型" prop="user_type">
                 <el-select v-model="formData.user_type" placeholder="请选择用户类型">
@@ -59,7 +62,7 @@
                 this.$http.post('/index/checkname', JSON.stringify({
                     username: value
                 })).then(res => {
-                    if (res.data.result) {
+                    if (!res.data.result) {
                         callback(new Error('用户名已被使用'));
                     } else {
                         callback();
@@ -75,6 +78,8 @@
                 rules: {
                     username: [{required: true, message: '账号不能为空', trigger: 'blur'},
                         {validator: checkname, trigger: 'blur'}],
+                    password: [{required: true, message: '密码不能为空', trigger: 'blur'}],
+
                     nickname: [{required: true, message: '昵称不能为空', trigger: 'blur'}],
                     user_type: [{required: true, message: '用户类型不能为空', trigger: 'blur'}]
                 },
@@ -82,6 +87,45 @@
         },
         methods: {
             submitForm() {
+                if (this.title === '新增') {
+                    this.register();
+                }else{
+                    this.edit();
+                }
+            },
+            register(){
+                let that = this;
+                this.$refs['formData'].validate((valid) => {
+                    if (valid) {
+                        let param = {
+                            nickname: that.formData.nickname,
+                            user_type: that.formData.user_type,
+                            password:that.formData.password,
+                        };
+                        this.$http({
+                            method: 'post',
+                            url: '/index/register',
+                            data: param
+                        }).then((res) => {
+                            this.$notify({
+                                title: '提示',
+                                message: '修改用户成功',
+                                type: 'success',
+                            });
+                            this.$emit('refresh')
+                        }).catch((res) => {
+                            this.$notify({
+                                title: '提示',
+                                message: '修改用户失败',
+                                type: 'error',
+                            });
+                        });
+                        this.dialogVisible = false
+
+                    }
+                });
+            },
+            edit(){
                 let that = this;
                 this.$refs['formData'].validate((valid) => {
                     if (valid) {
