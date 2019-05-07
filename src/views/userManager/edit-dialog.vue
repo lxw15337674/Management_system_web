@@ -62,7 +62,8 @@
                 this.$http.post('/index/checkname', JSON.stringify({
                     username: value
                 })).then(res => {
-                    if (!res.data.result) {
+
+                    if (res.data.code==="1") {
                         callback(new Error('用户名已被使用'));
                     } else {
                         callback();
@@ -98,6 +99,7 @@
                 this.$refs['formData'].validate((valid) => {
                     if (valid) {
                         let param = {
+                            username:that.formData.username,
                             nickname: that.formData.nickname,
                             user_type: that.formData.user_type,
                             password:that.formData.password,
@@ -109,19 +111,19 @@
                         }).then((res) => {
                             this.$notify({
                                 title: '提示',
-                                message: '修改用户成功',
+                                message: '新增用户成功',
                                 type: 'success',
                             });
                             this.$emit('refresh')
+                            this.dialogVisible = false
+
                         }).catch((res) => {
                             this.$notify({
                                 title: '提示',
-                                message: '修改用户失败',
+                                message: '新增用户失败',
                                 type: 'error',
                             });
                         });
-                        this.dialogVisible = false
-
                     }
                 });
             },
